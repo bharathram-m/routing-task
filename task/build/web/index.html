@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html ng-app="movie">
+
+<head>
+  <!-- STYLE -->
+  <link rel="stylesheet" href="css/bootstrap.css"/>
+
+  <!-- SCRIPTS -->
+  <script src="js/angular.js"></script>
+  <script src="js/angular-route.js"></script>
+  <script src="js/main.js"></script>
+</head>
+
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand">Bharath's Task</a>
+      </div>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#m1">Taxi Movie</a></li>
+        <li><a href="#m2">Split Movie</a></li>
+        <li><a href="#m3">Lion Movie</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div id="main">
+      <div ng-view></div>
+  </div>    
+      
+      <div id="qw">
+          
+      </div>
+          
+
+    <script>
+        var split = document.getElementById("split_div");
+               var taxi = document.getElementById("taxi_div");
+               var lion = document.getElementById("lion_div");
+               function taxi_func()
+               {   
+                   var ourreq = new XMLHttpRequest();
+                   ourreq.open('GET',"http://www.omdbapi.com/?t=taxi&y=1990&plot=short&r=json");
+                   ourreq.onload=function()
+                   {
+                       var data=JSON.parse(ourreq.responseText);
+                      console.log(data);
+                      var content = "Title : " + data.Title +"<br> year : " + data.Year +"</br> Runtime : "+ data.Runtime +"<br> Genre : "+ data.Genre + "Actors: "+data.Actors +"<br> Plot: "+ data.Plot +"<br> IMDB Rating :" + data.imdbRating;                  
+                     //taxi.insertAdjacentHTML('beforeend',content);
+                    document.writeln(content);
+                     //taxi.innerHTML=content;
+
+                   };
+                   ourreq.send();
+                   
+               }
+        </script>
+  
+  
+        <script>
+               
+               function lion_func()
+               { 
+                   var ourreq = new XMLHttpRequest();
+                   ourreq.open('GET',"http://www.omdbapi.com/?t=lion&y=2016&plot=full&r=json");
+                   ourreq.onload=function()
+                   {
+                       var data=JSON.parse(ourreq.responseText);
+                      console.log(data);
+                      content = "Title : " + data.Title +"<br> year : " + data.Year +"</br> Runtime : "+ data.Runtime +"<br> Genre : "+ data.Genre + "Actors: "+data.Actors +"<br> Plot: "+ data.Plot +"<br> IMDB Rating :" + data.imdbRating;                  
+                      //lion.insertAdjacentHTML('beforeend',content);
+                       document.writeln(content); 
+                   };
+                   ourreq.send();
+                   
+               }
+              function split_func()
+               { 
+                   var ourreq = new XMLHttpRequest();
+                   ourreq.open('GET',"http://www.omdbapi.com/?t=split&y=2016&plot=full&r=json");
+                   ourreq.onload=function()
+                   {
+                       var data=JSON.parse(ourreq.responseText);
+                      console.log(data);
+                      content = "Title : " + data.Title +"<br> year : " + data.Year +"</br> Runtime : "+ data.Runtime +"<br> Genre : "+ data.Genre + "Actors: "+data.Actors +"<br> Plot: "+ data.Plot +"<br> IMDB Rating :" + data.imdbRating;                  
+                      //split.insertAdjacentHTML('beforeend',content);
+                      document.writeln(content);
+                   };
+                   ourreq.send();
+                   
+               }
+
+               function rendr(data)
+               {   var content;
+                   content = "Title : " + data.Title +"<br> year : " + data.Year +"</br> Runtime : "+ data.Runtime +"<br> Genre : "+ data.Genre + "Actors: "+data.Actors +"<br> Plot: "+ data.Plot +"<br> IMDB Rating :" + data.imdbRating;                  
+                   animal.insertAdjacentHTML('beforeend',content);
+               }    
+        </script>
+  
+</body>
+
+</html>

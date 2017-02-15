@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/bootstrap.css"/>
+        <!--<script src="qwerty.js"></script>-->
+       
+    </head>
+    <body>
+        <div class="container" style="margin-top:10%">
+            <div class="col-lg-12">
+                <button  id="btnn" onclick="func()">fetch the data</button>    
+        </div>
+        </div>
+        
+        <div id="animaldiv">
+            
+        </div>
+        
+        <script>
+                var btn = document.getElementById("btnn");
+
+               var animal = document.getElementById("animaldiv");
+               
+               function func()
+               { 
+                   var ourreq = new XMLHttpRequest();
+                   ourreq.open('GET',"http://www.omdbapi.com/?t=taxi&y=1990&plot=short&r=json");
+                   ourreq.onload=function()
+                   {
+                       var data=JSON.parse(ourreq.responseText);
+                      console.log(data);
+                      var content;
+                       content = "Title : " + data.Title +"<br> year : " + data.Year +"</br> Runtime : "+ data.Runtime +"<br> Genre : "+ data.Genre + "Actors: "+data.Actors +"<br> Plot: "+ data.Plot +"<br> IMDB Rating :" + data.imdbRating;                  
+                   animal.insertAdjacentHTML('beforeend',content);
+
+                   };
+                   ourreq.send();
+                   
+               }
+
+               function rendr(data)
+               {   var content;
+                       content = "Title : " + data.Title +"<br> year : " + data.Year +"</br> Runtime : "+ data.Runtime +"<br> Genre : "+ data.Genre + "Actors: "+data.Actors +"<br> Plot: "+ data.Plot +"<br> IMDB Rating :" + data.imdbRating;                  
+                   animal.insertAdjacentHTML('beforeend',content);
+               }    
+        </script>
+    </body>
+</html>
